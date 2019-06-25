@@ -1,0 +1,24 @@
+{
+  "name": "dontknowyetapp",
+  "version": "1.0.0",
+  "description": "this is my cookbook api application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KnThrack/dontknowyetapp.git"
+  },
+  "author": "Kay Degro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KnThrack/dontknowyetapp/issues"
+  },
+  "homepage": "https://github.com/KnThrack/dontknowyetapp#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.2.7",
+    "mongoose": "^5.6.1"
+  }
+}
