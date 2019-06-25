@@ -1,0 +1,30 @@
+{
+	"name": "dontknowyetapp2git ",
+	"version": "0.3.0",
+	"description": "not sure yet what this will be",
+	"engines": {
+		"node": "8.14.1"
+	},
+	"main": "local.js",
+	"scripts": {
+		"start": "node --inspect local.js"
+	},
+	"dependencies": {
+		"ejs": "^2.5.7",
+		"express": "^4.16.2"
+	},
+	"devDependencies": {
+		"request": "^2.81.0",
+		"tape": "^4.7.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/KnThrack/dontknowyetapp"
+	},
+	"keywords": [
+		"node",
+		"heroku",
+		"express"
+	],
+	"license": "MIT"
+}
