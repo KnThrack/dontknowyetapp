@@ -10,7 +10,7 @@ router.get('/', function (req, res) {
 });
 // Import contact controller
 var contactController = require('./model/recipesController');
-// Contact routes
+// Contact routes f
 router.route('/recipes')
     .get(contactController.index)
     .post(contactController.new);
