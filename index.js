@@ -18,7 +18,6 @@ app.use(bodyParser.json());
 
 
 // const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://Kaysreadwrite:york_icicle_thimble_vowel_lido_lure_farewell_unwise_sodden@cluster0-y1qj0.mongodb.net/test?retryWrites=true&w=majority";
 /*
 const dbclient = new MongoClient(uri, { useNewUrlParser: true });
 dbclient.connect(err => {
@@ -27,7 +26,7 @@ dbclient.connect(err => {
   dbclient.close();
 });
 */
-mongoose.connect(uri, {useNewUrlParser: true});
+mongoose.connect(process.env.MONGO, {useNewUrlParser: true});
 var db = mongoose.connection;
 
 // Setup server port
