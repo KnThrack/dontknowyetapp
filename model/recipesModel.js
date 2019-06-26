@@ -11,7 +11,7 @@ var recipesSchema = mongoose.Schema({
         type: String
     },
     cuisine: String,
-    ingredients: [  { ingredient: String }, { quantity: Number }, { unit: String } ],
+    ingredients: { ingredient: String, quantity: Number,  unit: String },
     create_date: {
         type: Date,
         default: Date.now
