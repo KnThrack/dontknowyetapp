@@ -4,8 +4,12 @@
   "description": "this is my cookbook api application",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "node .",
+    "tsc": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KnThrack/dontknowyetapp.git"
