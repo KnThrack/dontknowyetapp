@@ -7,16 +7,16 @@ var recipesSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    email: {
-        type: String,
-        required: true
+    title: {
+        type: String
     },
-    gender: String,
-    phone: String,
+    cuisine: String,
+    ingredients: [ { "ingredient" : String }, { "quantity" : Number }, { "unit" : String } ],
     create_date: {
         type: Date,
         default: Date.now
-    }
+    },
+    recipe: String
 });
 // Export Recipes model
 var Recipes = module.exports = mongoose.model('recipes', recipesSchema);

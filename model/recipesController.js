@@ -21,9 +21,10 @@ exports.index = function (req, res) {
 exports.new = function (req, res) {
     var recipes = new Recipes();
     recipes.name = req.body.name ? req.body.name : recipes.name;
-    recipes.gender = req.body.gender;
-    recipes.email = req.body.email;
-    recipes.phone = req.body.phone;
+    recipes.title = req.body.title;
+    recipes.cuisine = req.body.cuisine;
+    recipes.ingredients = req.body.ingredients;
+    recipes.recipe = req.body.recipe;
 // save the recipes and check for errors
 recipes.save(function (err) {
         // if (err)
@@ -50,10 +51,11 @@ exports.update = function (req, res) {
 Recipes.findById(req.params.recipes_id, function (err, recipes) {
         if (err)
             res.send(err);
-recipes.name = req.body.name ? req.body.name : recipes.name;
-        recipes.gender = req.body.gender;
-        recipes.email = req.body.email;
-        recipes.phone = req.body.phone;
+            recipes.name = req.body.name ? req.body.name : recipes.name;
+            recipes.title = req.body.title;
+            recipes.cuisine = req.body.cuisine;
+            recipes.ingredients = req.body.ingredients;
+            recipes.recipe = req.body.recipe;
 // save the recipes and check for errors
         recipes.save(function (err) {
             if (err)
