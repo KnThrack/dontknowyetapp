@@ -19,5 +19,7 @@ router.route('/recipes/:recipes_id')
     .patch(contactController.update)
     .put(contactController.update)
     .delete(contactController.delete);
+router.route('/recipes?query')
+    .get(contactController.query);
 // Export API routes
 module.exports = router;

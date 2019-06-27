@@ -14,18 +14,9 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+
+
 // Connect to Mongoose and set connection variable
-
-
-// const MongoClient = require('mongodb').MongoClient;
-/*
-const dbclient = new MongoClient(uri, { useNewUrlParser: true });
-dbclient.connect(err => {
-  const collection = dbclient.db("test").collection("devices");
-  // perform actions on the collection object
-  dbclient.close();
-});
-*/
 mongoose.connect(process.env.MONGO, {useNewUrlParser: true});
 var db = mongoose.connection;
 

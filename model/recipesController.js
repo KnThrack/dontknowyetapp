@@ -1,9 +1,14 @@
 // recipesController.js
 // Import recipes model
 Recipes = require('./recipesModel');
+
+// query parser instatiation
+import { MongooseQueryParser } from 'mongoose-query-parser';
+const parser = new MongooseQueryParser();
+
 // Handle index actions
 exports.index = function (req, res) {
-    Recipes.get(function (err, reciepes) {
+    Recipes.get(function (err, recipes) {
         if (err) {
             res.json({
                 status: "error",
@@ -12,8 +17,8 @@ exports.index = function (req, res) {
         }
         res.json({
             status: "success",
-            message: "Reciepes retrieved successfully",
-            data: reciepes
+            message: "Recipes retrieved successfully",
+            data: recipes
         });
     });
 };
@@ -25,11 +30,11 @@ exports.new = function (req, res) {
     recipes.cuisine = req.body.cuisine;
     recipes.ingredients = req.body.ingredients;
     recipes.recipe = req.body.recipe;
-// save the recipes and check for errors
-recipes.save(function (err) {
+    // save the recipes and check for errors
+    recipes.save(function (err) {
         // if (err)
         //     res.json(err);
-res.json({
+        res.json({
             message: 'New recipes created!',
             data: recipes
         });
@@ -48,15 +53,15 @@ exports.view = function (req, res) {
 };
 // Handle update recipes info
 exports.update = function (req, res) {
-Recipes.findById(req.params.recipes_id, function (err, recipes) {
+    Recipes.findById(req.params.recipes_id, function (err, recipes) {
         if (err)
             res.send(err);
-            recipes.name = req.body.name ? req.body.name : recipes.name;
-            recipes.title = req.body.title;
-            recipes.cuisine = req.body.cuisine;
-            recipes.ingredients = req.body.ingredients;
-            recipes.recipe = req.body.recipe;
-// save the recipes and check for errors
+        recipes.name = req.body.name ? req.body.name : recipes.name;
+        recipes.title = req.body.title;
+        recipes.cuisine = req.body.cuisine;
+        recipes.ingredients = req.body.ingredients;
+        recipes.recipe = req.body.recipe;
+        // save the recipes and check for errors
         recipes.save(function (err) {
             if (err)
                 res.json(err);
@@ -74,9 +79,25 @@ exports.delete = function (req, res) {
     }, function (err, recipes) {
         if (err)
             res.send(err);
-res.json({
+        res.json({
             status: "success",
             message: 'Recipes deleted'
+        });
+    });
+};
+// Handle query of recipes
+// Handle delete recipes
+exports.query = function (req, res) {
+    res.json({
+        status: "success",
+        message: 'Recipes queried'
+    })    
+    , function (err, recipes) {
+        if (err)
+            res.send(err);
+        res.json({
+            status: "success",
+            message: 'Recipes queried'
         });
     });
 };
