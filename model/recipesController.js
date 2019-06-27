@@ -28,10 +28,12 @@ exports.index = function (req, res) {
 
     } else {
         // we got some query so lets query !
+        
+        const parsed = MongooseQueryParser.parse(req.query);
         res.json({
             status: "success",
-            message: "url parameters work ?",
-            data: req.query
+            message: "url parameters parsing",
+            data: parsed
         });
     }
 
