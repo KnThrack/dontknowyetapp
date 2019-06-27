@@ -1,7 +1,7 @@
 // recipesController.js
 // Import recipes model
 Recipes = require('./recipesModel');
-
+let MongooseQueryParser = require('mongoose-query-parser');
 // query parser instatiation
 // import { MongooseQueryParser } from 'mongoose-query-parser';
 // const parser = new MongooseQueryParser();
@@ -10,13 +10,23 @@ Recipes = require('./recipesModel');
 exports.index = function (req, res) {
 
     if (Object.keys(req.query).length === 0) {
-        res.json({
-            status: "success",
-            message: "url parameters empty",
-            data: req.query
+        // no query strings so get it all
+        Recipes.get(function (err, recipes) {
+            if (err) {
+                res.json({
+                    status: "error",
+                    message: err,
+                });
+            }
+            res.json({
+                status: "success",
+                message: "Recipes retrieved successfully",
+                data: recipes
+            });
         });
 
     } else {
+        // we got some query so lets query !
         res.json({
             status: "success",
             message: "url parameters work ?",
@@ -27,22 +37,6 @@ exports.index = function (req, res) {
     }
 
 };
-/*
-    Recipes.get(function (err, recipes) {
-        if (err) {
-            res.json({
-                status: "error",
-                message: err,
-            });
-        }
-        res.json({
-            status: "success",
-            message: "Recipes retrieved successfully",
-            data: recipes
-        });
-    });
-*/
-
 // Handle create recipes actions
 exports.new = function (req, res) {
     var recipes = new Recipes();
@@ -105,9 +99,4 @@ exports.delete = function (req, res) {
             message: 'Recipes deleted'
         });
     });
-};
-// Handle query of recipes
-// Handle delete recipes
-exports.query = function (req, res) {
-
 };
