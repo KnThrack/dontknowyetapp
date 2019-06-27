@@ -3,7 +3,7 @@
 Recipes = require('./recipesModel');
 
 // query parser instatiation
-MongooseQueryParser = require('mongoose-query-parser');
+MongooseQueryParser = require('../mongoose-query-parser');
 const parser = new MongooseQueryParser();
 // import { MongooseQueryParser } from 'mongoose-query-parser';
 // const parser = new MongooseQueryParser();
