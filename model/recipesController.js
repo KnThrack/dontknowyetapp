@@ -3,8 +3,8 @@
 Recipes = require('./recipesModel');
 
 // query parser instatiation
-import { MongooseQueryParser } from 'mongoose-query-parser';
-const parser = new MongooseQueryParser();
+// import { MongooseQueryParser } from 'mongoose-query-parser';
+// const parser = new MongooseQueryParser();
 
 // Handle index actions
 exports.index = function (req, res) {
