@@ -29,8 +29,8 @@ exports.index = function (req, res) {
 
     } else {
         // we got some query so lets query !
-        
-        const parsed = MongooseQueryParser.toString();
+       
+        const parsed = MongooseQueryParser.parse(req.query);
         //parse(req.query);
         res.json({
             status: "success",
