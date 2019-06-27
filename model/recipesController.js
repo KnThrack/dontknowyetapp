@@ -9,11 +9,22 @@ Recipes = require('./recipesModel');
 // Handle index actions
 exports.index = function (req, res) {
 
-    res.json({
-        status: "success",
-        message: "url parameters work ?",
-        data: req.query
-    });
+    if (req.query) {
+        res.json({
+            status: "success",
+            message: "url parameters work ?",
+            data: req.query
+        });
+
+    } else {
+        res.json({
+            status: "success",
+            message: "url parameters empty",
+            data: req.query
+        });
+
+    }
+
 };
 /*
     Recipes.get(function (err, recipes) {
