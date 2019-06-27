@@ -14,7 +14,7 @@ exports.index = function (req, res) {
         message: "url parameters work ?",
         data: req.params
     });
-
+};
 /*
     Recipes.get(function (err, recipes) {
         if (err) {
@@ -30,7 +30,7 @@ exports.index = function (req, res) {
         });
     });
 */
-};
+
 // Handle create recipes actions
 exports.new = function (req, res) {
     var recipes = new Recipes();
