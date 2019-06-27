@@ -1,7 +1,7 @@
 // recipesController.js
 // Import recipes model
 Recipes = require('./recipesModel');
-let MongooseQueryParser = require('mongoose-query-parser');
+
 // query parser instatiation
 // import { MongooseQueryParser } from 'mongoose-query-parser';
 // const parser = new MongooseQueryParser();
