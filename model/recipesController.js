@@ -12,7 +12,7 @@ exports.index = function (req, res) {
     res.json({
         status: "success",
         message: "url parameters work ?",
-        data: req.params
+        data: req.query
     });
 };
 /*
