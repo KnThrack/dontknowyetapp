@@ -31,14 +31,24 @@ exports.index = function (req, res) {
 
     } else {
         // we got some query so lets query !
-       
+
         const parsed = parser.parse(req.query);
-        //parse(req.query);
-        res.json({
-            status: "success",
-            message: "url parameters parsing",
-            data: parsed
+
+        Recipes.find(parsed,function (err, recipes) {
+            if (err) {
+                res.json({
+                    status: "error",
+                    message: err,
+                });
+            }
+            //parse(req.query);
+            res.json({
+                status: "success",
+                message: "url parameters parsing",
+                data: parsed
+            });
         });
+
     }
 
 };
