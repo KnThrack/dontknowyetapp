@@ -97,16 +97,5 @@ exports.delete = function (req, res) {
 // Handle query of recipes
 // Handle delete recipes
 exports.query = function (req, res) {
-    res.json({
-        status: "success",
-        message: 'Recipes queried'
-    })    
-    , function (err, recipes) {
-        if (err)
-            res.send(err);
-        res.json({
-            status: "success",
-            message: 'Recipes queried'
-        });
-    });
+
 };
