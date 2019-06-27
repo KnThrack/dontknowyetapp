@@ -3,6 +3,7 @@
 Recipes = require('./recipesModel');
 
 // query parser instatiation
+MongooseQueryParser = require('mongoose-query-parser');
 // import { MongooseQueryParser } from 'mongoose-query-parser';
 // const parser = new MongooseQueryParser();
 
@@ -32,8 +33,6 @@ exports.index = function (req, res) {
             message: "url parameters work ?",
             data: req.query
         });
-
-
     }
 
 };
