@@ -9,7 +9,7 @@ Recipes = require('./recipesModel');
 // Handle index actions
 exports.index = function (req, res) {
 
-    if (req.query === "{}") {
+    if (req.query == "{}") {
         res.json({
             status: "success",
             message: "url parameters empty",
