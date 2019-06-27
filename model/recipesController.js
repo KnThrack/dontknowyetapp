@@ -45,7 +45,7 @@ exports.index = function (req, res) {
             res.json({
                 status: "success",
                 message: "url parameters parsing",
-                data: parsed
+                data: recipes
             });
         });
 
