@@ -4,7 +4,7 @@ Recipes = require('./recipesModel');
 
 // query parser instatiation
 MongooseQueryParser = require('../mongoose-query-parser');
-const parser = new MongooseQueryParser();
+//const parser = new MongooseQueryParser();
 // import { MongooseQueryParser } from 'mongoose-query-parser';
 // const parser = new MongooseQueryParser();
 
@@ -30,11 +30,11 @@ exports.index = function (req, res) {
     } else {
         // we got some query so lets query !
         
-        const parsed = parser.parse(req.query);
+        //const parsed = parser.parse(req.query);
         res.json({
             status: "success",
             message: "url parameters parsing",
-            data: parsed
+            data: MongooseQueryParser
         });
     }
 
