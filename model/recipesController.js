@@ -8,6 +8,14 @@ const parser = new MongooseQueryParser();
 
 // Handle index actions
 exports.index = function (req, res) {
+
+    res.json({
+        status: "success",
+        message: "url parameters work ?",
+        data: req.params
+    });
+
+/*
     Recipes.get(function (err, recipes) {
         if (err) {
             res.json({
@@ -21,6 +29,7 @@ exports.index = function (req, res) {
             data: recipes
         });
     });
+*/
 };
 // Handle create recipes actions
 exports.new = function (req, res) {
