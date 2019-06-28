@@ -9,7 +9,7 @@ let cors = require("cors");
 
 // Initialize the app
 let app = express();
-app.use(cors);
+// app.use(cors);
 // Import routes
 let apiRoutes = require("./api-routes")
 // Configure bodyparser to handle post requests
