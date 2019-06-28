@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/KnThrack/dontknowyetapp#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongodb": "^3.2.7",
     "mongoose": "^5.6.1",

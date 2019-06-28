@@ -3,8 +3,10 @@ let express = require('express');
 // Import Body parser
 let bodyParser = require('body-parser');
 // Import Mongoose
-
 let mongoose = require('mongoose');
+// Import cors
+var cors = require("cors");
+
 // Initialize the app
 let app = express();
 // Import routes
@@ -14,7 +16,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-
+app.use(cors);
 
 // Connect to Mongoose and set connection variable
 mongoose.connect(process.env.MONGO, {useNewUrlParser: true});
