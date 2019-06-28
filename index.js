@@ -5,10 +5,11 @@ let bodyParser = require('body-parser');
 // Import Mongoose
 let mongoose = require('mongoose');
 // Import cors
-var cors = require("cors");
+let cors = require("cors");
 
 // Initialize the app
 let app = express();
+app.use(cors);
 // Import routes
 let apiRoutes = require("./api-routes")
 // Configure bodyparser to handle post requests
@@ -16,7 +17,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-app.use(cors);
+
 
 // Connect to Mongoose and set connection variable
 mongoose.connect(process.env.MONGO, {useNewUrlParser: true});
