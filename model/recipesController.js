@@ -34,7 +34,7 @@ exports.index = function (req, res) {
 
         const parsed = parser.parse(req.query);
 
-        Recipes.find(parsed.filter,function (err, recipes) {
+        Recipes.find(parsed.filter, function (err, recipes) {
             if (err) {
                 res.json({
                     status: "error",
@@ -88,7 +88,7 @@ exports.update = function (req, res) {
     Recipes.findById(req.params.recipes_id, function (err, recipes) {
         if (err)
             res.send(err);
-            console.log(req.body);
+        console.log(JSON.stringify(elementreq.body);
         recipes.name = req.body.name ? req.body.name : recipes.name;
         recipes.title = req.body.title;
         recipes.cuisine = req.body.cuisine;
