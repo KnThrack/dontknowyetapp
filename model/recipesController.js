@@ -88,7 +88,7 @@ exports.update = function (req, res) {
     Recipes.findById(req.params.recipes_id, function (err, recipes) {
         if (err)
             res.send(err);
-        console.log(JSON.stringify(elementreq.body);
+        console.log(JSON.stringify(req.body));
         recipes.name = req.body.name ? req.body.name : recipes.name;
         recipes.title = req.body.title;
         recipes.cuisine = req.body.cuisine;
