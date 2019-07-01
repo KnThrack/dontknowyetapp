@@ -84,9 +84,11 @@ exports.view = function (req, res) {
 };
 // Handle update recipes info
 exports.update = function (req, res) {
+    console.log(req.params.recipes_id);
     Recipes.findById(req.params.recipes_id, function (err, recipes) {
         if (err)
             res.send(err);
+            console.log(req.body);
         recipes.name = req.body.name ? req.body.name : recipes.name;
         recipes.title = req.body.title;
         recipes.cuisine = req.body.cuisine;
