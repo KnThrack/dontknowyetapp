@@ -56,7 +56,7 @@ var db = mongoose.connection;
 // Setup server port
 var port = process.env.PORT || 8080;
 // Send message for default URL
-app.get('/', (req, res) => res.send('Hello World with Express'));
+app.get('/', checkJwt, (req, res) => res.send('Hello World with Express'));
 
 // Use Api routes in the App
 app.use('/api', apiRoutes)
