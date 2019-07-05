@@ -35,27 +35,6 @@ const checkJwt = jwt({
 
 app.use(checkJwt);
 
-//app.js
-app.use((ctx, next) =>{
-
-    // Website you wish to allow to connect
-    ctx.set({
-                 'Access-Control-Allow-Origin': '*',
-                 // Request methods you wish to allow
-                 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-                 // Request headers you wish to allow
-                 'Access-Control-Allow-Headers': 'X-Requested-With,content-type,authorization',
-                 'Access-Control-Allow-Credentials': true,
-             });
-   
-   if(ctx.req.method = 'OPTIONS') {
-        ctx.res.statusCode = 204;
-
-   }
-    // Pass to next layer of middleware
-    await next();
-});
-
 // Define an endpoint that must be called with an access token
 app.get("/api/external", checkJwt, (req, res) => {
     res.send({
