@@ -33,6 +33,8 @@ const checkJwt = jwt({
     algorithm: ["RS256"]
 });
 
+app.use(checkJwt);
+
 // Define an endpoint that must be called with an access token
 app.get("/api/external", checkJwt, (req, res) => {
     res.send({
