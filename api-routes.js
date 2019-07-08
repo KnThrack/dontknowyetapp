@@ -8,6 +8,22 @@ router.get('/', function (req, res) {
         message: 'Welcome to RESTHub crafted with love!',
     });
 });
+
+let jwt = require("express-jwt");
+
+if (req.headers && req.headers.authorization) {
+    var authorization = headers.authorization,
+        decoded;
+    try {
+        decoded = jwt.verify(authorization, secret.secretToken);
+    } catch (e) {
+        return res.status(401).send('unauthorized');
+    }
+    var userId = decoded.id;
+    console.log(userId);
+
+}
+
 // Import recipes controller
 var recipesController = require('./model/recipesController');
 // Contact routes f
@@ -30,6 +46,6 @@ router.route('/users/:users_id')
     .get(usersController.view)
     .patch(usersController.update)
     .put(usersController.update)
-    .delete(usersController.delete)    
+    .delete(usersController.delete)
 // Export API routes
 module.exports = router;
