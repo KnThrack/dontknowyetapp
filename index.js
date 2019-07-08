@@ -71,7 +71,7 @@ app.use((req, res, next) => {
             decoded;
         console.log("coded: "+authorization);    
         try {
-            decoded = jwttoken.verify(authorization, checkJwt);
+            decoded = jwttoken.verify(authorization, checkJwt.secret);
         } catch (e) {
             return res.status(401).send('unauthorized');
             
