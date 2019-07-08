@@ -63,9 +63,8 @@ app.get('/', checkJwt, (req, res) => res.send('Hello World with Express'));
 // test sth 
 app.use(function (req, res, next) {
     console.log('Hello Time:', Date.now());
-    console.log(req);
-    if (req.authorization) console.log(req.Authorization);
-    if (req.header.Authorization) console.log(req.header.authorization);
+    console.log(req.headers);
+    if (req.headers.authorization) console.log(req.headers.authorization);
     next();
 });
 
