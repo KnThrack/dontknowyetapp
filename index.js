@@ -66,7 +66,7 @@ app.use(function (req, res, next) {
 
     if (req.headers.authorization) {
         console.log(req.headers.authorization);
-        var authorization = req.headers.authorization,
+        var authorization = req.headers.authorization.split(' ')[0],
             decoded;
         try {
             decoded = checkJwt.verify(authorization);
