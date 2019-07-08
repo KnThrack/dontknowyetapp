@@ -2,6 +2,7 @@
 let express = require('express');
 let jwt = require("express-jwt");
 let jwksRsa = require("jwks-rsa");
+var jwttoken = require('jsonwebtoken');
 // Import Body parser
 let bodyParser = require('body-parser');
 // Import Mongoose
@@ -61,15 +62,15 @@ var port = process.env.PORT || 8080;
 app.get('/', checkJwt, (req, res) => res.send('Hello World with Express'));
 
 // test sth 
-app.use(checkJwt, (req, res, next) => {
+app.use(checkJwt, jwttoken, (req, res, next) => {
     console.log('Hello Time:', Date.now());
 
     if (req.headers.authorization) {
-        console.log(checkJwt.secret);
+        
         var authorization = req.headers.authorization.split(' ')[0],
             decoded;
         try {
-            decoded = checkJwt.verify(authorization);
+            decoded = jwttoken.verify(authorization, checkJwt);
         } catch (e) {
             return res.status(401).send('unauthorized');
         }
