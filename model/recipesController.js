@@ -38,7 +38,7 @@ const checkJwt = jwt({
 // Handle index actions
 exports.index = function (req, res) {
 
-    console.log(req.authorization);
+    console.log(req.Authorization);
     if (req.authorization) {
         var authorization = req.authorization,
             decoded;
