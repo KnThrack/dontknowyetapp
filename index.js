@@ -69,15 +69,15 @@ app.use((req, res, next) => {
         
         var authorization = req.headers.authorization.split(' ')[1],
             decoded;
-        console.log("coded: "+authorization + "test    " + checkJwt);    
+        console.log("coded: "+authorization); 
+        
         try {
-            decoded = jwttoken.decode(authorization);
-        } catch (e) {
-            return res.status(401).send('unauthorized');
-            next();
-        }
-        var userId = decoded.id;
-        console.log("decode: "+decoded+" id: "+userId);
+            decoded = jwttoken.decode(authorization, { complete: true }) || {};
+            } catch (err) {
+            return next(new UnauthorizedError('invalid_token', err));
+            }
+
+        console.log("decode: "+ decoded.PAYLOAD);
     }
 
     next();
