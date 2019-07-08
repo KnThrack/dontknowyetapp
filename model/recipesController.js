@@ -4,6 +4,7 @@ Recipes = require('./recipesModel');
 
 // query parser instatiation
 const { MongooseQueryParser } = require('mongoose-query-parser');
+var mongoose = require('mongoose');
 const parser = new MongooseQueryParser();
 
 //const parser = new MongooseQueryParser();
