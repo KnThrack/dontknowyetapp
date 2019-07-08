@@ -69,10 +69,12 @@ app.use((req, res, next) => {
         
         var authorization = req.headers.authorization.split(' ')[0],
             decoded;
+        console.log("coded: "+authorization);    
         try {
             decoded = jwttoken.verify(authorization, checkJwt);
         } catch (e) {
             return res.status(401).send('unauthorized');
+            
         }
         var userId = decoded.id;
         console.log("decode: "+decoded+" id: "+userId);
