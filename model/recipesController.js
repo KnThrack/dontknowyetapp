@@ -18,7 +18,7 @@ let jwt = require("express-jwt");
 // Handle index actions
 exports.index = function (req, res) {
 
-
+    console.log(req);
     if (req.headers && req.headers.authorization) {
         var authorization = headers.authorization,
             decoded;
