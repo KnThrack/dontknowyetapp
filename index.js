@@ -65,6 +65,7 @@ app.use(function (req, res, next) {
     console.log('Hello Time:', Date.now());
 
     if (req.headers.authorization) {
+        console.log(req.headers.authorization);
         var authorization = req.headers.authorization,
             decoded;
         try {
