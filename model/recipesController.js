@@ -33,7 +33,7 @@ exports.index = function (req, res) {
         // we got some query so lets query !
 
         const parsed = parser.parse(req.query);
-
+        console.log(parsed);
         Recipes.find(parsed.filter, function (err, recipes) {
             if (err) {
                 res.json({
