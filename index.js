@@ -9,7 +9,7 @@ let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 // Import cors
 let cors = require("cors");
-
+const util = require('util')
 // Initialize the app
 let app = express();
 
@@ -74,18 +74,11 @@ app.use((req, res, next) => {
         try {
             decoded = jwttoken.decode(authorization, { complete: true });
         } catch (err) {
-            console.log("jwttoken: ");
-            return next();
-        }
-        console.log("decode: " + decoded + "decoded2: " + decoded2);
-        try {
-            decoded2 = jwt.decode(authorization, { complete: true });
-        } catch (err) {
-            console.log("jwt: ");
+            console.log("error jwttoken: ");
             return next();
         }
 
-        console.log("decode: " + decoded + "decoded2: " + decoded2);
+        console.log("decode: " + util.inspect(decoded));
     }
 
     next();
