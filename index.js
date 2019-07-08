@@ -63,8 +63,19 @@ app.get('/', checkJwt, (req, res) => res.send('Hello World with Express'));
 // test sth 
 app.use(function (req, res, next) {
     console.log('Hello Time:', Date.now());
-    console.log(req.headers);
-    if (req.headers.authorization) console.log(req.headers.authorization);
+
+    if (req.headers.authorization) {
+        var authorization = req.headers.authorization,
+            decoded;
+        try {
+            decoded = jwt.verify(authorization, checkJwt.secret.secretToken);
+        } catch (e) {
+            return res.status(401).send('unauthorized');
+        }
+        var userId = decoded.id;
+        console.log("decode: "+decoded+" id: "+decoded.userId);
+    }
+
     next();
 });
 

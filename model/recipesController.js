@@ -15,7 +15,6 @@ const parser = new MongooseQueryParser();
 
 // Handle index actions
 exports.index = function (req, res) {
-
     if (Object.keys(req.query).length === 0) {
         // no query strings so get it all
         Recipes.get(function (err, recipes) {
