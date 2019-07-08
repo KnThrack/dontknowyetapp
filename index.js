@@ -66,19 +66,26 @@ app.use((req, res, next) => {
     console.log('Hello Time:', Date.now());
 
     if (req.headers.authorization) {
-        
+
         var authorization = req.headers.authorization.split(' ')[1],
-            decoded,decoded2;
-        console.log("coded: "+authorization); 
-        
+            decoded, decoded2;
+        console.log("coded: " + authorization);
+
         try {
             decoded = jwttoken.decode(authorization, { complete: true });
+        } catch (err) {
+            console.log("jwttoken: ");
+            return next();
+        }
+        console.log("decode: " + decoded + "decoded2: " + decoded2);
+        try {
             decoded2 = jwt.decode(authorization, { complete: true });
-            } catch (err) {
-            return next(new UnauthorizedError('invalid_token', err));
-            }
+        } catch (err) {
+            console.log("jwt: ");
+            return next();
+        }
 
-        console.log("decode: "+ decoded + "decoded2: "+decoded2);
+        console.log("decode: " + decoded + "decoded2: " + decoded2);
     }
 
     next();
