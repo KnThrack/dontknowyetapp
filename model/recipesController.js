@@ -4,8 +4,12 @@ Recipes = require('./recipesModel');
 
 // query parser instatiation
 const { MongooseQueryParser } = require('mongoose-query-parser');
+// mongoose
 var mongoose = require('mongoose');
+
 const parser = new MongooseQueryParser();
+// security 
+let jwt = require("express-jwt");
 
 //const parser = new MongooseQueryParser();
 // import { MongooseQueryParser } from 'mongoose-query-parser';
@@ -13,6 +17,19 @@ const parser = new MongooseQueryParser();
 
 // Handle index actions
 exports.index = function (req, res) {
+
+
+    if (req.headers && req.headers.authorization) {
+        var authorization = headers.authorization,
+            decoded;
+        try {
+            decoded = jwt.verify(authorization, secret.secretToken);
+        } catch (e) {
+            return res.status(401).send('unauthorized');
+        }
+        var userId = decoded.id;
+        console.log(userId);
+    }
 
     if (Object.keys(req.query).length === 0) {
         // no query strings so get it all

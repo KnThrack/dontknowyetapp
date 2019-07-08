@@ -9,21 +9,6 @@ router.get('/', function (req, res) {
     });
 });
 
-let jwt = require("express-jwt");
-
-if (req.headers && req.headers.authorization) {
-    var authorization = headers.authorization,
-        decoded;
-    try {
-        decoded = jwt.verify(authorization, secret.secretToken);
-    } catch (e) {
-        return res.status(401).send('unauthorized');
-    }
-    var userId = decoded.id;
-    console.log(userId);
-
-}
-
 // Import recipes controller
 var recipesController = require('./model/recipesController');
 // Contact routes f
