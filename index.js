@@ -61,7 +61,7 @@ var port = process.env.PORT || 8080;
 app.get('/', checkJwt, (req, res) => res.send('Hello World with Express'));
 
 // test sth 
-app.use(function (req, res, next) {
+app.use(checkJwt, (req, res, next) => {
     console.log('Hello Time:', Date.now());
 
     if (req.headers.authorization) {
