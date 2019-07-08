@@ -68,12 +68,12 @@ app.use(function (req, res, next) {
         var authorization = req.headers.authorization,
             decoded;
         try {
-            decoded = jwt.verify(authorization, checkJwt.secret.secretToken);
+            decoded = checkJwt.verify(authorization);
         } catch (e) {
             return res.status(401).send('unauthorized');
         }
         var userId = decoded.id;
-        console.log("decode: "+decoded+" id: "+decoded.userId);
+        console.log("decode: "+decoded+" id: "+userId);
     }
 
     next();
