@@ -8,48 +8,13 @@ const { MongooseQueryParser } = require('mongoose-query-parser');
 var mongoose = require('mongoose');
 
 const parser = new MongooseQueryParser();
-// security 
-let jwt = require("express-jwt");
-let jwksRsa = require("jwks-rsa");
-// Set up Auth0 configuration
-const authConfig = {
-    domain: "shrill-brook-0201.eu.auth0.com",
-    audience: "https://notsureyetapp.herokuapp.com/api"
-};
 
-// Define middleware that validates incoming bearer tokens
-// using JWKS from dev-dontknowyet.eu.auth0.com
-const checkJwt = jwt({
-    secret: jwksRsa.expressJwtSecret({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`
-    }),
-
-    audience: authConfig.audience,
-    issuer: `https://${authConfig.domain}/`,
-    algorithm: ["RS256"]
-});
 //const parser = new MongooseQueryParser();
 // import { MongooseQueryParser } from 'mongoose-query-parser';
 // const parser = new MongooseQueryParser();
 
 // Handle index actions
 exports.index = function (req, res) {
-
-    console.log(req.Authorization);
-    if (req.authorization) {
-        var authorization = req.authorization,
-            decoded;
-        try {
-            decoded = jwt.verify(authorization, checkJwt.secret.secretToken);
-        } catch (e) {
-            return res.status(401).send('unauthorized');
-        }
-        var userId = decoded.id;
-        console.log(userId);
-    }
 
     if (Object.keys(req.query).length === 0) {
         // no query strings so get it all
