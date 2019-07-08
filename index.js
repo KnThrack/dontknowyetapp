@@ -68,16 +68,17 @@ app.use((req, res, next) => {
     if (req.headers.authorization) {
         
         var authorization = req.headers.authorization.split(' ')[1],
-            decoded;
+            decoded,decoded2;
         console.log("coded: "+authorization); 
         
         try {
-            decoded = jwttoken.decode(authorization, { complete: true }) || {};
+            decoded = jwttoken.decode(authorization, { complete: true });
+            decoded2 = jwt.decode(authorization, { complete: true });
             } catch (err) {
             return next(new UnauthorizedError('invalid_token', err));
             }
 
-        console.log("decode: "+ decoded.PAYLOAD);
+        console.log("decode: "+ decoded + "decoded2: "+decoded2);
     }
 
     next();
