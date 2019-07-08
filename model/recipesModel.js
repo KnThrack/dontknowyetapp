@@ -1,6 +1,7 @@
 // recipesModel.js
 var mongoose = require('mongoose');
 // Setup schema
+var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var recipesSchema = mongoose.Schema({
     name: {
@@ -16,7 +17,11 @@ var recipesSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    recipe: String
+    recipe: String,
+    user: {
+        type: ObjectId,
+        required: true
+    }
 });
 // Export Recipes model
 var Recipes = module.exports = mongoose.model('recipes', recipesSchema);

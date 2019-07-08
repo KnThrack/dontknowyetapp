@@ -1,6 +1,6 @@
-// recipesController.js
-// Import recipes model
-Recipes = require('./recipesModel');
+// usersController.js
+// Import users model
+Users = require('./usersModel');
 
 // query parser instatiation
 const { MongooseQueryParser } = require('mongoose-query-parser');
@@ -15,7 +15,7 @@ exports.index = function (req, res) {
 
     if (Object.keys(req.query).length === 0) {
         // no query strings so get it all
-        Recipes.get(function (err, recipes) {
+        Users.get(function (err, users) {
             if (err) {
                 res.json({
                     status: "error",
@@ -24,8 +24,8 @@ exports.index = function (req, res) {
             }
             res.json({
                 status: "success",
-                message: "Recipes retrieved successfully",
-                data: recipes
+                message: "Users retrieved successfully",
+                data: users
             });
         });
 
@@ -34,7 +34,7 @@ exports.index = function (req, res) {
 
         const parsed = parser.parse(req.query);
 
-        Recipes.find(parsed.filter, function (err, recipes) {
+        Users.find(parsed.filter, function (err, users) {
             if (err) {
                 res.json({
                     status: "error",
@@ -46,77 +46,69 @@ exports.index = function (req, res) {
                 status: "success",
                 message: "url parameters parsing",
                 query: parsed,
-                data: recipes
+                data: users
             });
         });
 
     }
 
 };
-// Handle create recipes actions
+// Handle create users actions
 exports.new = function (req, res) {
-    var recipes = new Recipes();
-    recipes.name = req.body.name ? req.body.name : recipes.name;
-    recipes.title = req.body.title;
-    recipes.cuisine = req.body.cuisine;
-    recipes.ingredients = req.body.ingredients;
-    recipes.recipe = req.body.recipe;
-    recipes.user = mongoose.Types.ObjectId(req.body.user);
-    // save the recipes and check for errors
-    recipes.save(function (err) {
+    var users = new Users();
+    users.name = req.body.name ? req.body.name : users.name;
+    users.email = req.body.email ? req.body.email : users.email;;
+    // save the users and check for errors
+    users.save(function (err) {
         // if (err)
         //     res.json(err);
         res.json({
-            message: 'New recipes created!',
-            data: recipes
+            message: 'New users created!',
+            data: users
         });
     });
 };
-// Handle view recipes info
+// Handle view users info
 exports.view = function (req, res) {
-    Recipes.findById(req.params.recipes_id, function (err, recipes) {
+    Users.findById(req.params.users_id, function (err, users) {
         if (err)
             res.send(err);
         res.json({
-            message: 'Recipes details loading..',
-            data: recipes
+            message: 'Users details loading..',
+            data: users
         });
     });
 };
-// Handle update recipes info
+// Handle update users info
 exports.update = function (req, res) {
-    console.log(req.params.recipes_id);
-    Recipes.findById(req.params.recipes_id, function (err, recipes) {
+    console.log(req.params.users_id);
+    Users.findById(req.params.users_id, function (err, users) {
         if (err)
             res.send(err);
         console.log(JSON.stringify(req.body));
-        recipes.name = req.body.name ? req.body.name : recipes.name;
-        recipes.title = req.body.title;
-        recipes.cuisine = req.body.cuisine;
-        recipes.ingredients = req.body.ingredients;
-        recipes.recipe = req.body.recipe;
-        recipes.user = mongoose.Types.ObjectId(req.body.user);
-        // save the recipes and check for errors
-        recipes.save(function (err) {
+        users.name = req.body.name ? req.body.name : users.name;
+        users.email = req.body.email ? req.body.email : users.email;
+        // save the users and check for errors
+        users.save(function (err) {
             if (err)
                 res.json(err);
             res.json({
-                message: 'Recipes Info updated',
-                data: recipes
+                message: 'Users Info updated',
+                data: users
             });
         });
     });
 };
-// Handle delete recipes
+// Handle delete users
 exports.delete = function (req, res) {
-    Recipes.remove({
-        _id: req.params.recipes_id
-    }, function (err, recipes) {
+    Users.remove({
+        _id: req.params.users_id
+    }, function (err, users) {
         if (err)
             res.send(err);
         res.json({
             status: "success",
-            message: 'Recipes deleted'
+            message: 'Users deleted'
         });
     });
 };
