@@ -65,7 +65,7 @@ app.use(checkJwt, (req, res, next) => {
     console.log('Hello Time:', Date.now());
 
     if (req.headers.authorization) {
-        console.log(checkJwt.verify);
+        console.log(checkJwt);
         var authorization = req.headers.authorization.split(' ')[0],
             decoded;
         try {
