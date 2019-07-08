@@ -1,6 +1,6 @@
 // usersController.js
 // Import users model
-Users = require('./usersModel');
+Users = require('./userModel');
 
 // query parser instatiation
 const { MongooseQueryParser } = require('mongoose-query-parser');

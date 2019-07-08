@@ -21,7 +21,7 @@ router.route('/recipes/:recipes_id')
     .delete(recipesController.delete);
 
 // Import users controller
-var usersController = require('./model/usersController');
+var usersController = require('./model/userController');
 // Users routes 
 router.route('/users')
     .get(usersController.index)
