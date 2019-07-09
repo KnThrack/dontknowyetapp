@@ -53,6 +53,7 @@ exports.index = function (req, res) {
             //parse(req.query);
             var usr = req.app.get("usr");
             var real_users = JSON.parse(JSON.stringify(users));
+            console.log(real_users);
             if (real_users === null || real_users === undefined ) {
                 res.json({
                     status: "error",
