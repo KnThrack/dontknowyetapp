@@ -51,6 +51,10 @@ exports.index = function (req, res) {
                 });
             }
             //parse(req.query);
+            if (!users) {res.json({
+                status: "error",
+                message: "No User found",
+            }); return}
             var usr = req.app.get("usr");
             var real_users = JSON.parse(JSON.stringify(users));
             if (usr === real_users[0].auth0ID) {
