@@ -45,7 +45,7 @@ exports.index = function (req, res) {
             console.log(`parsed users: ${users}`);
             var real_users = JSON.parse(JSON.stringify(users));
             console.log(`parsed users: ${real_users}`);
-            if (usr === real_users[0].auth0ID) {
+            if (usr === real_users.auth0ID) {
                 Recipes.find(parsed.filter, function (err, recipes) {
                     if (err) {
                         res.json({
