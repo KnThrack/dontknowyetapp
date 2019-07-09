@@ -23,12 +23,19 @@ exports.index = function (req, res) {
                 });
             }
             var usr = req.app.get("usr");
-            usr === users.auth0ID &&
+            var real_users = JSON.parse(JSON.stringify(users));
+            if (usr === real_users[0].auth0ID) {
                 res.json({
                     status: "success",
                     message: "Users retrieved successfully",
                     data: users
                 });
+            } else {
+                res.json({
+                    status: "error",
+                    message: `logged in user: ${usr} not equals to user: ${users}`,
+                });
+            }
         });
 
     } else {
@@ -47,13 +54,8 @@ exports.index = function (req, res) {
             }
             //parse(req.query);
             var usr = req.app.get("usr");
-            var resultUser = JSON.stringify(users);
-            console.log(`auth0id: ${resultUser}`+ typeof resultUser);
-            var real_users = JSON.parse(resultUser);
-           
-            console.log(`real_users:`+  util.inspect(real_users[0]));
-            console.log(`auth0id: ${usr} fromdb: ${real_users[0].auth0ID}`);
-            if (usr === real_users.auth0ID) {
+            var real_users = JSON.parse(JSON.stringify(users));
+            if (usr === real_users[0].auth0ID) {
                 res.json({
                     status: "success",
                     message: "url parameters parsing",
@@ -93,11 +95,13 @@ exports.view = function (req, res) {
         if (err)
             res.send(err);
         var usr = req.app.get("usr");
-        usr === users.auth0ID &&
+        var real_users = JSON.parse(JSON.stringify(users));
+        if (usr === real_users[0].auth0ID) {
             res.json({
                 message: 'Users details loading..',
                 data: users
             });
+        }
     });
 };
 // Handle update users info
@@ -112,7 +116,8 @@ exports.update = function (req, res) {
         users.auth0ID = req.app.get("usr");
         // save the users and check for errors
         var usr = req.app.get("usr");
-        usr === users.auth0ID &&
+        var real_users = JSON.parse(JSON.stringify(users));
+        if (usr === real_users[0].auth0ID) {
             users.save(function (err) {
                 if (err)
                     res.json(err);
@@ -121,6 +126,7 @@ exports.update = function (req, res) {
                     data: users
                 });
             });
+        }
     });
 };
 // Handle delete users

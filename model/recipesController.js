@@ -42,7 +42,8 @@ exports.index = function (req, res) {
             if (err)
                 res.send(err);
             var usr = req.app.get("usr");
-            usr === users.auth0ID &&
+            var real_users = JSON.parse(JSON.stringify(users));
+            if (usr === real_users[0].auth0ID) {
                 Recipes.find(parsed.filter, function (err, recipes) {
                     if (err) {
                         res.json({
@@ -58,6 +59,7 @@ exports.index = function (req, res) {
                         data: recipes
                     });
                 });
+            }
         });
     }
 
