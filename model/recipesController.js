@@ -1,6 +1,7 @@
 // recipesController.js
 // Import recipes model
 Recipes = require('./recipesModel');
+Users = require('./userModel');
 
 // query parser instatiation
 const { MongooseQueryParser } = require('mongoose-query-parser');
@@ -16,42 +17,48 @@ const parser = new MongooseQueryParser();
 // Handle index actions
 exports.index = function (req, res) {
     if (Object.keys(req.query).length === 0) {
-        // no query strings so get it all
-        Recipes.get(function (err, recipes) {
-            if (err) {
+        // no query strings so get it all this should never happen since you only allowed to see your own users stuff
+        1 == 2 &&
+            Recipes.get(function (err, recipes) {
+                if (err) {
+                    res.json({
+                        status: "error",
+                        message: err,
+                    });
+                }
                 res.json({
-                    status: "error",
-                    message: err,
+                    status: "success",
+                    message: "Recipes retrieved successfully",
+                    data: recipes
                 });
-            }
-            res.json({
-                status: "success",
-                message: "Recipes retrieved successfully",
-                data: recipes
             });
-        });
 
     } else {
         // we got some query so lets query !
-
         const parsed = parser.parse(req.query);
         console.log(parsed);
-        Recipes.find(parsed.filter, function (err, recipes) {
-            if (err) {
-                res.json({
-                    status: "error",
-                    message: err,
+        // we secure this by checking if the requested user is the logged in user 
+        Users.findById(parsed.filter.user, function (err, users) {
+            if (err)
+                res.send(err);
+            var usr = req.app.get("usr");
+            usr === users.auth0ID &&
+                Recipes.find(parsed.filter, function (err, recipes) {
+                    if (err) {
+                        res.json({
+                            status: "error",
+                            message: err,
+                        });
+                    }
+                    //parse(req.query);
+                    res.json({
+                        status: "success",
+                        message: "url parameters parsing",
+                        query: parsed,
+                        data: recipes
+                    });
                 });
-            }
-            //parse(req.query);
-            res.json({
-                status: "success",
-                message: "url parameters parsing",
-                query: parsed,
-                data: recipes
-            });
         });
-
     }
 
 };

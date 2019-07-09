@@ -22,13 +22,13 @@ exports.index = function (req, res) {
                     message: err,
                 });
             }
-            var usrmail = req.app.get("usr-mail");
-            console.log( `can i access usrmail: ${usrmail} and ${users}`);
-            res.json({
-                status: "success",
-                message: "Users retrieved successfully",
-                data: users
-            });
+            var usr = req.app.get("usr");
+            usr === users.auth0ID &&
+                res.json({
+                    status: "success",
+                    message: "Users retrieved successfully",
+                    data: users
+                });
         });
 
     } else {
@@ -37,7 +37,7 @@ exports.index = function (req, res) {
         const parsed = parser.parse(req.query);
         var usrmail = req.app.get("usr-mail");
         if (parsed.filter.email !== usrmail) return;
-        console.log( `parsed: ${parsed.filter.email} usrmail: ${usrmail}`);
+        console.log(`parsed: ${parsed.filter.email} usrmail: ${usrmail}`);
         Users.find(parsed.filter, function (err, users) {
             if (err) {
                 res.json({
@@ -46,14 +46,14 @@ exports.index = function (req, res) {
                 });
             }
             //parse(req.query);
-            var usrmail = req.app.get("usr-mail");
-            console.log( `can i access usrmail: ${usrmail} and ${users}`);            
-            res.json({
-                status: "success",
-                message: "url parameters parsing",
-                query: parsed,
-                data: users
-            });
+            var usr = req.app.get("usr");
+            usr === users.auth0ID &&
+                res.json({
+                    status: "success",
+                    message: "url parameters parsing",
+                    query: parsed,
+                    data: users
+                });
         });
 
     }
@@ -63,7 +63,8 @@ exports.index = function (req, res) {
 exports.new = function (req, res) {
     var users = new Users();
     users.name = req.body.name ? req.body.name : users.name;
-    users.email = req.body.email ? req.body.email : users.email;;
+    users.email = req.app.get("usr-mail");
+    users.auth0ID = req.app.get("usr");
     // save the users and check for errors
     users.save(function (err) {
         // if (err)
@@ -79,30 +80,35 @@ exports.view = function (req, res) {
     Users.findById(req.params.users_id, function (err, users) {
         if (err)
             res.send(err);
-        res.json({
-            message: 'Users details loading..',
-            data: users
-        });
+        var usr = req.app.get("usr");
+        usr === users.auth0ID &&
+            res.json({
+                message: 'Users details loading..',
+                data: users
+            });
     });
 };
 // Handle update users info
 exports.update = function (req, res) {
-    console.log(req.params.users_id);
+
     Users.findById(req.params.users_id, function (err, users) {
         if (err)
             res.send(err);
-        console.log(JSON.stringify(req.body));
+
         users.name = req.body.name ? req.body.name : users.name;
         users.email = req.body.email ? req.body.email : users.email;
+        users.auth0ID = req.app.get("usr");
         // save the users and check for errors
-        users.save(function (err) {
-            if (err)
-                res.json(err);
-            res.json({
-                message: 'Users Info updated',
-                data: users
+        var usr = req.app.get("usr");
+        usr === users.auth0ID &&
+            users.save(function (err) {
+                if (err)
+                    res.json(err);
+                res.json({
+                    message: 'Users Info updated',
+                    data: users
+                });
             });
-        });
     });
 };
 // Handle delete users

@@ -10,6 +10,10 @@ var usersSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    auth0ID: {
+        type: String,
+        required: true
+    },   
     create_date: {
         type: Date,
         default: Date.now
