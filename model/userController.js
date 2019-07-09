@@ -51,24 +51,27 @@ exports.index = function (req, res) {
                 });
             }
             //parse(req.query);
-            if (!users) {res.json({
-                status: "error",
-                message: "No User found",
-            }); return}
-            var usr = req.app.get("usr");
-            var real_users = JSON.parse(JSON.stringify(users));
-            if (usr === real_users[0].auth0ID) {
-                res.json({
-                    status: "success",
-                    message: "url parameters parsing",
-                    query: parsed,
-                    data: users
-                });
-            } else {
+            if (util.isNullOrUndefined(real_users[0].auth0ID)) {
                 res.json({
                     status: "error",
-                    message: `logged in user: ${usr} not equals to user: ${users}`,
+                    message: `No User found`,
                 });
+            } else {
+                var usr = req.app.get("usr");
+                var real_users = JSON.parse(JSON.stringify(users));
+                if (usr === real_users[0].auth0ID) {
+                    res.json({
+                        status: "success",
+                        message: "url parameters parsing",
+                        query: parsed,
+                        data: users
+                    });
+                } else {
+                    res.json({
+                        status: "error",
+                        message: `logged in user: ${usr} not equals to user: ${users}`,
+                    });
+                }
             }
         });
 
