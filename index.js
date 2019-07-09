@@ -63,22 +63,22 @@ app.get('/', checkJwt, (req, res) => res.send('Hello World with Express'));
 
 // test sth 
 app.use((req, res, next) => {
-    console.log('Hello Time:', Date.now());
-
+    // read the auth header and get the user out
     if (req.headers.authorization) {
 
         var authorization = req.headers.authorization.split(' ')[1],
             decoded, decoded2;
-        console.log("coded: " + authorization);
 
         try {
+            // decode it 
             decoded = jwttoken.decode(authorization, { complete: true });
+            // set it
+            req.app.set('usr-mail', decoded.payload['https://dontknowyet.com/email']);
+            req.app.set('usr', decoded.payload.sub);
         } catch (err) {
             console.log("error jwttoken: ");
             return next();
         }
-
-        console.log("decode: " + util.inspect(decoded.payload['https://dontknowyet.com/email'] ));
     }
 
     next();
