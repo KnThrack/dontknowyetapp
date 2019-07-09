@@ -78,7 +78,7 @@ app.use((req, res, next) => {
             return next();
         }
 
-        console.log("decode: " + util.inspect(decoded));
+        console.log("decode: " + util.inspect(decoded.payload));
     }
 
     next();
