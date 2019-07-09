@@ -47,8 +47,9 @@ exports.index = function (req, res) {
             }
             //parse(req.query);
             var usr = req.app.get("usr");
-            console.log(`auth0id: ${usr} fromdb: ${users.auth0ID}`);
-            if (usr === users.auth0ID) {
+            var real_users = JSON.parse(users, true);
+            console.log(`auth0id: ${usr} fromdb: ${real_users.auth0ID}`);
+            if (usr === real_users.auth0ID) {
                 res.json({
                     status: "success",
                     message: "url parameters parsing",
