@@ -22,6 +22,8 @@ exports.index = function (req, res) {
                     message: err,
                 });
             }
+            var usrmail = req.app.get("usr-mail");
+            console.log( `can i access usrmail: ${usrmail} and ${users}`);
             res.json({
                 status: "success",
                 message: "Users retrieved successfully",
@@ -44,6 +46,8 @@ exports.index = function (req, res) {
                 });
             }
             //parse(req.query);
+            var usrmail = req.app.get("usr-mail");
+            console.log( `can i access usrmail: ${usrmail} and ${users}`);            
             res.json({
                 status: "success",
                 message: "url parameters parsing",
