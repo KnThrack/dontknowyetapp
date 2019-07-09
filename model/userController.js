@@ -47,7 +47,8 @@ exports.index = function (req, res) {
             }
             //parse(req.query);
             var usr = req.app.get("usr");
-            var real_users = JSON.parse(users, true);
+            console.log(`JSON Users: ${users}`);
+            var real_users = JSON.parse(users);
             console.log(`auth0id: ${usr} fromdb: ${real_users.auth0ID}`);
             if (usr === real_users.auth0ID) {
                 res.json({
@@ -59,7 +60,7 @@ exports.index = function (req, res) {
             } else {
                 res.json({
                     status: "error",
-                    message: `logged in user: ${usr} not equals to user: ${users.auth0ID}`,
+                    message: `logged in user: ${usr} not equals to user: ${users}`,
                 });
             }
         });
