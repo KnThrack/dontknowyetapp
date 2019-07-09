@@ -36,13 +36,6 @@ const checkJwt = jwt({
 
 app.use(checkJwt);
 
-// Define an endpoint that must be called with an access token
-app.get("/api/external", checkJwt, (req, res) => {
-    res.send({
-        msg: "Your Access Token was successfully validated!"
-    });
-});
-
 // Import routes
 let apiRoutes = require("./api-routes")
 // Configure bodyparser to handle post requests
@@ -59,7 +52,7 @@ var db = mongoose.connection;
 // Setup server port
 var port = process.env.PORT || 8080;
 // Send message for default URL
-app.get('/', checkJwt, (req, res) => res.send('Hello World with Express'));
+//app.get('/', checkJwt, (req, res) => res.send('Hello World with Express'));
 
 // test sth 
 app.use((req, res, next) => {
@@ -80,7 +73,6 @@ app.use((req, res, next) => {
             return next();
         }
     }
-
     next();
 });
 
