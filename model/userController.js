@@ -1,7 +1,7 @@
 // usersController.js
 // Import users model
 Users = require('./userModel');
-
+const util = require('util')
 // query parser instatiation
 const { MongooseQueryParser } = require('mongoose-query-parser');
 const parser = new MongooseQueryParser();
@@ -50,7 +50,8 @@ exports.index = function (req, res) {
             var resultUser = JSON.stringify(users);
             console.log(`auth0id: ${resultUser}`+ typeof resultUser);
             var real_users = JSON.parse(resultUser);
-            console.log(`real_users: ${real_users}`+ typeof real_users);
+           
+            console.log(`real_users:`+  util.inspect(real_users));
             console.log(`auth0id: ${usr} fromdb: ${real_users.auth0ID}`);
             if (usr === real_users.auth0ID) {
                 res.json({
