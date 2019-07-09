@@ -48,6 +48,7 @@ exports.index = function (req, res) {
             //parse(req.query);
             var usr = req.app.get("usr");
             var resultUserArray = JSON.stringify(users);
+            console.log(`auth0id: ${resultUserArray[0]}`);
             var real_users = JSON.parse(resultUserArray[0]);
             console.log(`auth0id: ${usr} fromdb: ${real_users.auth0ID}`);
             if (usr === real_users.auth0ID) {
