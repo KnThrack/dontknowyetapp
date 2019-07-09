@@ -47,13 +47,20 @@ exports.index = function (req, res) {
             }
             //parse(req.query);
             var usr = req.app.get("usr");
-            usr === users.auth0ID &&
+            console.log(`parsed: ${usr} usrmail: ${users.auth0ID}`);
+            if (usr === users.auth0ID) {
                 res.json({
                     status: "success",
                     message: "url parameters parsing",
                     query: parsed,
                     data: users
                 });
+            } else {
+                res.json({
+                    status: "error",
+                    message: `logged in user: ${usr} not equals to user: ${users.auth0ID}`,
+                });
+            }
         });
 
     }
