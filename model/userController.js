@@ -53,7 +53,7 @@ exports.index = function (req, res) {
             //parse(req.query);
             var usr = req.app.get("usr");
             var real_users = JSON.parse(JSON.stringify(users));
-            if (util.isNullOrUndefined(real_users[0].auth0ID)) {
+            if (real_users === null || value === undefined ) {
                 res.json({
                     status: "error",
                     message: `No User found`,
