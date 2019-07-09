@@ -47,7 +47,7 @@ exports.index = function (req, res) {
             }
             //parse(req.query);
             var usr = req.app.get("usr");
-            console.log(`parsed: ${usr} usrmail: ${users.auth0ID}`);
+            console.log(`auth0id: ${usr} fromdb: ${users}`);
             if (usr === users.auth0ID) {
                 res.json({
                     status: "success",
