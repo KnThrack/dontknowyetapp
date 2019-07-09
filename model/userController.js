@@ -51,8 +51,8 @@ exports.index = function (req, res) {
             console.log(`auth0id: ${resultUser}`+ typeof resultUser);
             var real_users = JSON.parse(resultUser);
            
-            console.log(`real_users:`+  util.inspect(real_users));
-            console.log(`auth0id: ${usr} fromdb: ${real_users.auth0ID}`);
+            console.log(`real_users:`+  util.inspect(real_users[0]));
+            console.log(`auth0id: ${usr} fromdb: ${real_users[0].auth0ID}`);
             if (usr === real_users.auth0ID) {
                 res.json({
                     status: "success",
