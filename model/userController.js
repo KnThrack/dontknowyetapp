@@ -51,14 +51,14 @@ exports.index = function (req, res) {
                 });
             }
             //parse(req.query);
+            var usr = req.app.get("usr");
+            var real_users = JSON.parse(JSON.stringify(users));
             if (util.isNullOrUndefined(real_users[0].auth0ID)) {
                 res.json({
                     status: "error",
                     message: `No User found`,
                 });
             } else {
-                var usr = req.app.get("usr");
-                var real_users = JSON.parse(JSON.stringify(users));
                 if (usr === real_users[0].auth0ID) {
                     res.json({
                         status: "success",
