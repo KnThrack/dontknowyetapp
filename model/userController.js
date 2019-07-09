@@ -53,7 +53,7 @@ exports.index = function (req, res) {
             //parse(req.query);
             var usr = req.app.get("usr");
             var real_users = JSON.parse(JSON.stringify(users));
-            if (real_users === null || value === undefined ) {
+            if (real_users === null || real_users === undefined ) {
                 res.json({
                     status: "error",
                     message: `No User found`,
