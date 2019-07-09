@@ -42,7 +42,9 @@ exports.index = function (req, res) {
             if (err)
                 res.send(err);
             var usr = req.app.get("usr");
+            console.log(`parsed users: ${users}`);
             var real_users = JSON.parse(JSON.stringify(users));
+            console.log(`parsed users: ${real_users}`);
             if (usr === real_users[0].auth0ID) {
                 Recipes.find(parsed.filter, function (err, recipes) {
                     if (err) {
