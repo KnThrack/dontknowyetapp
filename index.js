@@ -67,7 +67,7 @@ app.use((req, res, next) => {
     if (req.headers.authorization) {
 
         var authorization = req.headers.authorization.split(' ')[1],
-            decoded, decoded2;
+            decoded;
 
         try {
             // decode it 

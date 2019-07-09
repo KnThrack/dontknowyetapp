@@ -33,7 +33,7 @@ exports.index = function (req, res) {
         // we got some query so lets query !
 
         const parsed = parser.parse(req.query);
-        var usrmail = req.app.get(usr-mail);
+        var usrmail = req.app.get("usr-mail");
         if (parsed.filter.email !== usrmail) return;
         console.log( "parsed: ${parsed.filter.email} usrmail: ${usrmail}");
         Users.find(parsed.filter, function (err, users) {
