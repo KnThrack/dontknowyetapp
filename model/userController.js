@@ -40,11 +40,9 @@ exports.index = function (req, res) {
 
     } else {
         // we got some query so lets query !
-
         const parsed = parser.parse(req.query);
         var usrmail = req.app.get("usr-mail");
         if (parsed.filter.email !== usrmail) return;
-        console.log(`parsed: ${parsed.filter.email} usrmail: ${usrmail}`);
         Users.find(parsed.filter, function (err, users) {
             if (err) {
                 res.json({
@@ -96,7 +94,7 @@ exports.view = function (req, res) {
             res.send(err);
         var usr = req.app.get("usr");
         var real_users = JSON.parse(JSON.stringify(users));
-        if (usr === real_users[0].auth0ID) {
+        if (usr === real_users.auth0ID) {
             res.json({
                 message: 'Users details loading..',
                 data: users
@@ -117,7 +115,7 @@ exports.update = function (req, res) {
         // save the users and check for errors
         var usr = req.app.get("usr");
         var real_users = JSON.parse(JSON.stringify(users));
-        if (usr === real_users[0].auth0ID) {
+        if (usr === real_users.auth0ID) {
             users.save(function (err) {
                 if (err)
                     res.json(err);
