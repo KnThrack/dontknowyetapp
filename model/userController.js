@@ -51,16 +51,15 @@ exports.index = function (req, res) {
                 });
             }
             //parse(req.query);
-            var usr = req.app.get("usr");
-            console.log(`logged in user: ${JSON.stringify(users)} ` + typeof users );
-            var real_users = JSON.parse(JSON.stringify(users));
-
             if (JSON.stringify(users) === null || JSON.stringify(users) === undefined || JSON.stringify(users) === [] || JSON.stringify(users) === "[]" ) {
                 res.json({
                     status: "error",
                     message: `No User found`,
                 });
             } else {
+                var usr = req.app.get("usr");
+                var real_users = JSON.parse(JSON.stringify(users));
+                
                 if (usr === real_users[0].auth0ID) {
                     res.json({
                         status: "success",
