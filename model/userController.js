@@ -55,7 +55,7 @@ exports.index = function (req, res) {
             console.log(`logged in user: ${users} `);
             var real_users = JSON.parse(JSON.stringify(users));
 
-            if (real_users === null || real_users === undefined || real_users === [] || real_users === "[]" ) {
+            if (users === null || users === undefined || users === [] || users === "[]" ) {
                 res.json({
                     status: "error",
                     message: `No User found`,
