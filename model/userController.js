@@ -52,7 +52,7 @@ exports.index = function (req, res) {
             }
             //parse(req.query);
             var usr = req.app.get("usr");
-            console.log(`logged in user: ${users} `);
+            console.log(`logged in user: ${users} ` + typeof users );
             var real_users = JSON.parse(JSON.stringify(users));
 
             if (users === null || users === undefined || users === [] || users === "[]" ) {
