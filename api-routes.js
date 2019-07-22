@@ -32,5 +32,18 @@ router.route('/users/:users_id')
     .patch(usersController.update)
     .put(usersController.update)
     .delete(usersController.delete)
+
+// upload Image route
+ // Import users controller
+var imageController = require('./model/imageController');
+// Users routes 
+router.route('/upload')
+    .get(imageController.index)
+    .post(imageController.new);
+router.route('/upload/:image_id')
+    .get(imageController.view)
+    .patch(imageController.update)
+    .put(imageController.update)
+    .delete(imageController.delete)   
 // Export API routes
 module.exports = router;
