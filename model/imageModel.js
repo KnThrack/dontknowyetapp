@@ -25,7 +25,7 @@ var imageSchema = mongoose.Schema({
 	}
 });
 // Export Recipes model
-var Image = (module.exports = mongoose.model("pictures", usersSchema));
+var Image = (module.exports = mongoose.model("pictures", imageSchema));
 module.exports.get = function(callback, limit) {
 	Image.find(callback).limit(limit);
 };
