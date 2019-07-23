@@ -85,7 +85,7 @@ firebaseAdmin.initializeApp({
 	credential: firebaseAdmin.credential.cert({
 		type: "service_account",
 		project_id: "dontknowyet",
-		private_key: process.env.FIRE_KEY,
+		private_key: process.env.FIRE_KEY.replace(/\\n/g, "\n"),
 		client_email: process.env.FIRE_EMAIL
 	}),
 	databaseURL: "https://dontknowyet.firebaseio.com"
