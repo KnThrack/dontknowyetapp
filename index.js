@@ -91,7 +91,7 @@ firebaseAdmin.initializeApp({
 	databaseURL: "https://dontknowyet.firebaseio.com"
 });
 
-app.get("/auth/firebase", jwtCheck, (req, res) => {
+app.get("/auth/firebase", checkJwt, (req, res) => {
 	// Create UID from authenticated Auth0 user
 	const uid = req.user.sub;
 	// Mint token using Firebase Admin SDK
