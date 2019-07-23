@@ -82,7 +82,7 @@ app.use((req, res, next) => {
 
 // Initialize Firebase Admin with service account
 firebaseAdmin.initializeApp({
-	credential: admin.credential.cert({
+	credential: firebaseAdmin.credential.cert({
 		type: "service_account",
 		project_id: "dontknowyet",
 		private_key: process.env.FIRE_KEY,
