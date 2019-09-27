@@ -4,8 +4,9 @@
   "description": "this is my cookbook api application",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run build:live",
+    "build": "tsc -p .",
+    "build:live": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts"
   },
   "repository": {
     "type": "git",
