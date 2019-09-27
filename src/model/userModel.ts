@@ -1,7 +1,14 @@
 // recipesModel.js
-var mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
+
+interface Users {
+	name: string;
+	email: string;
+	auth0ID: string;
+	create_date: Date;
+  }
 // Setup schema
-var usersSchema = mongoose.Schema({
+const usersSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -20,7 +27,6 @@ var usersSchema = mongoose.Schema({
     },
 });
 // Export Recipes model
-var User = module.exports = mongoose.model('users', usersSchema);
-module.exports.get = function (callback, limit) {
-    Users.find(callback).limit(limit);
-}
+const User = mongoose.model<Users & mongoose.Document>('users', usersSchema);
+ 
+export default User;

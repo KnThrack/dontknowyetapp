@@ -14,6 +14,10 @@ const util = require("util");
 // Initialize the app
 let app = express();
 
+let Images = require('./imageModel');
+let Users = require('./userModel');
+let Recipes = require('./recipesModel');
+
 // Set up Auth0 configuration
 const authConfig = {
 	domain: "shrill-brook-0201.eu.auth0.com",

@@ -1,8 +1,17 @@
 // recipesModel.js
-var mongoose = require("mongoose");
+import * as mongoose from 'mongoose';
 var ObjectId = mongoose.Schema.Types.ObjectId;
+
+interface Pictures {
+	name: string;
+	data: Buffer;
+	contentType: string;
+	user: any;
+	recipe: any;
+  }
+   
 // Setup schema
-var imageSchema = mongoose.Schema({
+const imageSchema = new mongoose.Schema({
 	name: {
 		type: String,
 		required: true
@@ -25,7 +34,6 @@ var imageSchema = mongoose.Schema({
 	}
 });
 // Export Recipes model
-var Image = (module.exports = mongoose.model("pictures", imageSchema));
-module.exports.get = function(callback, limit) {
-	Image.find(callback).limit(limit);
-};
+const Image = mongoose.model<Pictures & mongoose.Document>('pictures', imageSchema);
+ 
+export default Image;

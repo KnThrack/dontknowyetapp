@@ -1,12 +1,12 @@
-// imagesController.js
-// Import images model
-Images = require('./imageModel');
-Users = require('./userModel');
+// recipesController.js
+// Import recipes model
+
+
 
 // query parser instatiation
 const { MongooseQueryParser } = require('mongoose-query-parser');
 // mongoose
-var mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
 
 const parser = new MongooseQueryParser();
 
@@ -18,8 +18,7 @@ const parser = new MongooseQueryParser();
 exports.index = function (req, res) {
     if (Object.keys(req.query).length === 0) {
         // no query strings so get it all this should never happen since you only allowed to see your own users stuff
-        1 == 2 &&
-            Images.get(function (err, images) {
+            Recipes.get(function (err, recipes) {
                 if (err) {
                     res.json({
                         status: "error",
@@ -28,8 +27,8 @@ exports.index = function (req, res) {
                 }
                 res.json({
                     status: "success",
-                    message: "Images retrieved successfully",
-                    data: images
+                    message: "Recipes retrieved successfully",
+                    data: recipes
                 });
             });
 
@@ -44,7 +43,7 @@ exports.index = function (req, res) {
             var usr = req.app.get("usr");
             var real_users = JSON.parse(JSON.stringify(users));
             if (usr === real_users.auth0ID) {
-                Images.find(parsed.filter, function (err, images) {
+                Recipes.find(parsed.filter, function (err, recipes) {
                     if (err) {
                         res.json({
                             status: "error",
@@ -56,7 +55,7 @@ exports.index = function (req, res) {
                         status: "success",
                         message: "url parameters parsing",
                         query: parsed,
-                        data: images
+                        data: recipes
                     });
                 });
             }
@@ -64,68 +63,70 @@ exports.index = function (req, res) {
     }
 
 };
-// Handle create images actions
+// Handle create recipes actions
 exports.new = function (req, res) {
-    var images = new Images();
-    images.name = req.body.name ? req.body.name : images.name;
-    images.contentType = req.body.contentType;
-    images.data = req.body.data;
-    images.recipe = mongoose.Types.ObjectId(req.body.recipe);
-    images.user = mongoose.Types.ObjectId(req.body.user);
-    // save the images and check for errors
-    images.save(function (err) {
+    var recipes = new Recipes();
+    recipes.name = req.body.name ? req.body.name : recipes.name;
+    recipes.title = req.body.title;
+    recipes.cuisine = req.body.cuisine;
+    recipes.ingredients = req.body.ingredients;
+    recipes.recipe = req.body.recipe;
+    recipes.user = mongoose.Types.ObjectId(req.body.user);
+    // save the recipes and check for errors
+    recipes.save(function (err) {
         // if (err)
         //     res.json(err);
         res.json({
-            message: 'New images created!',
-            data: images
+            message: 'New recipes created!',
+            data: recipes
         });
     });
 };
-// Handle view images info
+// Handle view recipes info
 exports.view = function (req, res) {
-    Images.findById(req.params.images_id, function (err, images) {
+    Recipes.findById(req.params.recipes_id, function (err, recipes) {
         if (err)
             res.send(err);
         res.json({
-            message: 'Images details loading..',
-            data: images
+            message: 'Recipes details loading..',
+            data: recipes
         });
     });
 };
-// Handle update images info
+// Handle update recipes info
 exports.update = function (req, res) {
-    console.log(req.params.images_id);
-    Images.findById(req.params.images_id, function (err, images) {
+    console.log(req.params.recipes_id);
+    Recipes.findById(req.params.recipes_id, function (err, recipes) {
         if (err)
             res.send(err);
         console.log(JSON.stringify(req.body));
-        images.name = req.body.name ? req.body.name : images.name;
-        images.contentType = req.body.contentType;
-        images.data = req.body.data;
-        images.recipe = mongoose.Types.ObjectId(req.body.recipe);
-        images.user = mongoose.Types.ObjectId(req.body.user);
-        // save the images and check for errors
-        images.save(function (err) {
+        recipes.name = req.body.name ? req.body.name : recipes.name;
+        recipes.title = req.body.title;
+        recipes.cuisine = req.body.cuisine;
+        recipes.ingredients = req.body.ingredients;
+        recipes.recipe = req.body.recipe;
+        recipes.user = mongoose.Types.ObjectId(req.body.user);
+        // save the recipes and check for errors
+        recipes.save(function (err) {
             if (err)
                 res.json(err);
             res.json({
-                message: 'Images Info updated',
-                data: images
+                message: 'Recipes Info updated',
+                data: recipes
             });
         });
     });
 };
-// Handle delete images
+// Handle delete recipes
 exports.delete = function (req, res) {
-    Images.remove({
-        _id: req.params.images_id
-    }, function (err, images) {
+    Recipes.remove({
+        _id: req.params.recipes_id
+    }, function (err, recipes) {
         if (err)
             res.send(err);
         res.json({
             status: "success",
-            message: 'Images deleted'
+            message: 'Recipes deleted'
         });
     });
 };

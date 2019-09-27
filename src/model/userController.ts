@@ -1,7 +1,5 @@
 // usersController.js
 // Import users model
-Users = require('./userModel');
-const util = require('util')
 // query parser instatiation
 const { MongooseQueryParser } = require('mongoose-query-parser');
 const parser = new MongooseQueryParser();
@@ -51,7 +49,7 @@ exports.index = function (req, res) {
                 });
             }
             //parse(req.query);
-            if (JSON.stringify(users) === null || JSON.stringify(users) === undefined || JSON.stringify(users) === [] || JSON.stringify(users) === "[]" ) {
+            if (JSON.stringify(users) === null || JSON.stringify(users) === undefined || JSON.stringify(users) === "[]" ) {
                 res.json({
                     status: "error",
                     message: `No User found`,

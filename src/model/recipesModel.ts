@@ -1,9 +1,18 @@
 // recipesModel.js
-var mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
 // Setup schema
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
-var recipesSchema = mongoose.Schema({
+interface Recipes {
+	title: string;
+	data: string;
+	cuisine: string;
+	ingredients: any;
+    recipe: string;
+    user: any;
+  }
+
+const recipesSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -24,7 +33,6 @@ var recipesSchema = mongoose.Schema({
     }
 });
 // Export Recipes model
-var Recipes = module.exports = mongoose.model('recipes', recipesSchema);
-module.exports.get = function (callback, limit) {
-    Recipes.find(callback).limit(limit);
-}
+const Recipe = mongoose.model<Recipes & mongoose.Document>('recipes', recipesSchema);
+ 
+export default Recipe;
