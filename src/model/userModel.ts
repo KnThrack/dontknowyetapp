@@ -1,14 +1,14 @@
 // recipesModel.js
-import * as mongoose from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
 
-interface Users {
+export interface IUsers extends Document{
 	name: string;
 	email: string;
 	auth0ID: string;
 	create_date: Date;
   }
 // Setup schema
-const usersSchema = new mongoose.Schema({
+const usersSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -27,6 +27,4 @@ const usersSchema = new mongoose.Schema({
     },
 });
 // Export Recipes model
-const User = mongoose.model<Users & mongoose.Document>('users', usersSchema);
- 
-export default User;
+export default mongoose.model<IUsers>('Users', usersSchema);

@@ -1,8 +1,8 @@
 // recipesModel.js
-import * as mongoose from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
-interface Pictures {
+export interface IPictures extends Document{
 	name: string;
 	data: Buffer;
 	contentType: string;
@@ -11,7 +11,7 @@ interface Pictures {
   }
    
 // Setup schema
-const imageSchema = new mongoose.Schema({
+const imageSchema = new Schema({
 	name: {
 		type: String,
 		required: true
@@ -34,6 +34,5 @@ const imageSchema = new mongoose.Schema({
 	}
 });
 // Export Recipes model
-const Image = mongoose.model<Pictures & mongoose.Document>('pictures', imageSchema);
- 
-export default Image;
+
+export default mongoose.model<IPictures>('Pictures', imageSchema);

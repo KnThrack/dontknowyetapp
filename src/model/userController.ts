@@ -7,12 +7,13 @@ const parser = new MongooseQueryParser();
 //const parser = new MongooseQueryParser();
 // import { MongooseQueryParser } from 'mongoose-query-parser';
 // const parser = new MongooseQueryParser();
-Users = require('./userModel');
+import Users, { IUsers } from './userModel';
 // Handle index actions
 exports.index = function (req, res) {
 
     if (Object.keys(req.query).length === 0) {
         // no query strings so get it all
+        
         Users.get(function (err, users) {
             if (err) {
                 res.json({

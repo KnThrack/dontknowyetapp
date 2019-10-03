@@ -15,7 +15,6 @@ const util = require("util");
 let app = express();
 
 let Images = require('./model/imageModel');
-let Users = require('./model/userModel');
 let Recipes = require('./model/recipesModel');
 
 // Set up Auth0 configuration

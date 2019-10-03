@@ -1,9 +1,9 @@
 // recipesModel.js
-import * as mongoose from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
 // Setup schema
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
-interface Recipes {
+export interface IRecipes extends Document{
 	title: string;
 	data: string;
 	cuisine: string;
@@ -12,7 +12,7 @@ interface Recipes {
     user: any;
   }
 
-const recipesSchema = new mongoose.Schema({
+const recipesSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -33,6 +33,5 @@ const recipesSchema = new mongoose.Schema({
     }
 });
 // Export Recipes model
-const Recipe = mongoose.model<Recipes & mongoose.Document>('recipes', recipesSchema);
- 
-export default Recipe;
+export default mongoose.model<IRecipes>('Recipes', recipesSchema);
+

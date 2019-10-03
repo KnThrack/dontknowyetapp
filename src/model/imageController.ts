@@ -8,7 +8,8 @@ const { MongooseQueryParser } = require('mongoose-query-parser');
 import * as mongoose from 'mongoose';
 
 let Mparser = new MongooseQueryParser();
-Users = require('./userModel');
+import Users, { IUsers } from './userModel';
+import Images, { IPictures } from './imageModel';
 //const parser = new MongooseQueryParser();
 // import { MongooseQueryParser } from 'mongoose-query-parser';
 // const parser = new MongooseQueryParser();
