@@ -7,7 +7,7 @@ const parser = new MongooseQueryParser();
 //const parser = new MongooseQueryParser();
 // import { MongooseQueryParser } from 'mongoose-query-parser';
 // const parser = new MongooseQueryParser();
-Users = require('./model/userModel');
+Users = require('./userModel');
 // Handle index actions
 exports.index = function (req, res) {
 

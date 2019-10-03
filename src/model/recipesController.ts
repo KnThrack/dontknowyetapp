@@ -9,7 +9,7 @@ const { MongooseQueryParser } = require('mongoose-query-parser');
 import * as mongoose from 'mongoose';
 
 const parser = new MongooseQueryParser();
-Users = require('./model/userModel');
+Users = require('./userModel');
 //const parser = new MongooseQueryParser();
 // import { MongooseQueryParser } from 'mongoose-query-parser';
 // const parser = new MongooseQueryParser();
