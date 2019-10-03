@@ -13,9 +13,9 @@ let cors = require("cors");
 const util = require("util");
 // Initialize the app
 let app = express();
-let Images = require('./imageModel');
-let Users = require('./userModel');
-let Recipes = require('./recipesModel');
+let Images = require('./model/imageModel');
+let Users = require('./model/userModel');
+let Recipes = require('./model/recipesModel');
 // Set up Auth0 configuration
 const authConfig = {
     domain: "shrill-brook-0201.eu.auth0.com",

@@ -3,7 +3,7 @@
 
 
 // query parser instatiation
-//const { MongooseQueryParser } = require('mongoose-query-parser');
+const { MongooseQueryParser } = require('mongoose-query-parser');
 // mongoose
 import * as mongoose from 'mongoose';
 
