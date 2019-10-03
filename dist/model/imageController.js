@@ -10,7 +10,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 // query parser instatiation
-//const { MongooseQueryParser } = require('mongoose-query-parser');
+const { MongooseQueryParser } = require('mongoose-query-parser');
 // mongoose
 const mongoose = __importStar(require("mongoose"));
 let Mparser = new MongooseQueryParser();

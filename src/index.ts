@@ -53,7 +53,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Connect to Mongoose and set connection variable
-mongoose.connect(process.env.MONGO, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGO as string, { useNewUrlParser: true });
 var db = mongoose.connection;
 
 // Setup server port
