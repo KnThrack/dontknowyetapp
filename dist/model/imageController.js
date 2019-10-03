@@ -1,11 +1,18 @@
 "use strict";
 // imagesController.js
 // Import images model
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 // query parser instatiation
 //const { MongooseQueryParser } = require('mongoose-query-parser');
 // mongoose
-const mongoose = require("mongoose");
+const mongoose = __importStar(require("mongoose"));
 let Mparser = new MongooseQueryParser();
 //const parser = new MongooseQueryParser();
 // import { MongooseQueryParser } from 'mongoose-query-parser';
